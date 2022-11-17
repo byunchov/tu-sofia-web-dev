@@ -1,10 +1,13 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { DatabaseModule } from 'src/database/database.module';
 import { HeroController } from './hero.controller';
+import { heroProviders } from './hero.providers';
 import { HeroService } from './hero.service';
+
 @Module({
-  imports: [ConfigModule.forRoot()],
+  imports: [DatabaseModule],
   controllers: [HeroController],
-  providers: [HeroService],
+  providers: [...heroProviders, HeroService],
+  exports: [],
 })
 export class HeroModule {}

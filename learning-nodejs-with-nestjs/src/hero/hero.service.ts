@@ -1,39 +1,23 @@
-import { Injectable } from '@nestjs/common';
-import { Hero } from './hero.model';
+import { Inject, Injectable } from '@nestjs/common';
+import { Repository } from 'typeorm';
+import { HeroDto } from './hero.dto';
+import { Hero } from './hero.entity';
 
 @Injectable()
 export class HeroService {
-  heroes: Hero[] = [
-    {
-      name: 'Spiderman',
-      realName: 'Peter Parker',
-      powers: ['web', 'strength'],
-      universe: 'Marvel',
-    },
+  constructor(
+    @Inject('HERO_REPOSITORY')
+    private heroRepository: Repository<Hero>,
+  ) {}
+  public async findAll(): Promise<Hero[]> {
+    return this.heroRepository.find();
+  }
 
-    {
-      name: 'Superman',
-      realName: 'Clark Kent',
-      powers: ['laser', 'strength'],
-      universe: 'DC',
-    },
-
-    {
-      name: 'Superman',
-      realName: 'Clark Kent',
-      powers: ['laser', 'strength'],
-      universe: 'Marvel',
-    },
-
-    {
-      name: 'Batman',
-      realName: 'Bruce Wayne',
-      powers: ['rich', 'cool'],
-      universe: 'DC',
-    },
-  ];
-
-  findHeroes(name: string): Hero[] {
-    return this.heroes.filter((hero) => hero.name === name);
+  public async createOne(hero: HeroDto): Promise<Hero> {
+    let createdHero = await this.heroRepository.save(hero);
+    createdHero = await this.heroRepository.findOne({
+      where: { id: createdHero.id },
+    });
+    return createdHero;
   }
 }

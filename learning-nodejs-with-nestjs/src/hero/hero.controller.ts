@@ -1,21 +1,20 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { HeroDto } from './hero.dto';
 import { HeroService } from './hero.service';
-import { Hero } from './hero.model';
 
 @Controller('hero')
 export class HeroController {
-  constructor(private readonly heroService: HeroService) {}
+  constructor(private heroService: HeroService) {}
 
   @Get()
-  getHeroes(@Query('name') name: string): Hero[] {
-    return this.heroService.findHeroes(name);
+  async getAllHeroes() {
+    const heroes = await this.heroService.findAll();
+    return heroes;
   }
 
-  /** FYI Endpoints */
-  @Get(':id')
-  getOneHero(@Param('id') id: number) {
-    return id;
+  @Post()
+  async createOne(@Body() hero: HeroDto) {
+    const heroes = await this.heroService.createOne(hero);
+    return heroes;
   }
 }
-
-// http://localhost:3000/hero?name=Batman
