@@ -16,4 +16,7 @@ export class Hero {
 
   @Column({ length: 500 })
   name: string;
+
+  @ManyToOne(() => Universe, (universe) => universe.heroes)
+  universe: Universe;
 }
