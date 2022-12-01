@@ -9,7 +9,6 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { Filter } from 'src/shared/models/filter';
 import { HeroDto } from './hero.dto';
 import { HeroService } from './hero.service';
 
@@ -34,7 +33,7 @@ export class HeroController {
   }
 
   @Get(':id')
-  async getOneHero(@Param('id') id) {
+  async getOneHero(@Param('id') id: number) {
     const hero = await this.heroService.findOneHero(id);
     return hero;
   }

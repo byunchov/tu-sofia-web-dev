@@ -10,7 +10,6 @@ import { Universe } from 'src/universe/universe.entity';
 import { DataSource, In, Repository } from 'typeorm';
 import { HeroDto } from './hero.dto';
 import { Hero } from './hero.entity';
-import { rm } from 'fs/promises';
 
 @Injectable()
 export class HeroService {
