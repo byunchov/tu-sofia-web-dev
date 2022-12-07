@@ -6,6 +6,8 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
+import { ChipModule } from 'primeng/chip';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [HeroListComponent],
@@ -15,6 +17,8 @@ import { FormsModule } from '@angular/forms';
     ButtonModule,
     DialogModule,
     InputTextModule,
+    ChipModule,
+    BrowserModule,
   ],
   providers: [HeroService],
   bootstrap: [],
