@@ -1,4 +1,5 @@
 export interface Hero {
+  id: Number;
   name: string;
   universe: Universe;
   powers: Power[];

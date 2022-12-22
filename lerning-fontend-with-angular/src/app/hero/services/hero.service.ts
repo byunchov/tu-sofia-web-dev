@@ -17,4 +17,10 @@ export class HeroService {
       `${environment.backendUrl}/hero`, heroDto
     );
   }
+
+  deleteHero(heroDto: Hero) {
+    return this.http.delete(
+      `${environment.backendUrl}/hero/${heroDto.id}`
+    );
+  }
 }

@@ -32,6 +32,7 @@
           ></p-columnFilter>
         </div>
       </th>
+      <th></th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-hero>
@@ -46,7 +47,9 @@
           </div>
         </div>
       </td>
-      <!-- <td>{{ hero.powers }}</td> -->
+      <td>
+        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteHero(hero)"></button>
+    </td>
     </tr>
   </ng-template>
 </p-table>
@@ -103,3 +106,5 @@
     ></button>
   </ng-template>
 </p-dialog>
+
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
